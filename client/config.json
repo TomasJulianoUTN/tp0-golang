@@ -1,5 +1,6 @@
 {
   "ip": "127.0.0.1",
   "puerto": 8080,
-  "mensaje": "Hola soy un cliente"
+  "mensaje": "Mensaje del cliente",
+  "clave": "It's alive"
 }
