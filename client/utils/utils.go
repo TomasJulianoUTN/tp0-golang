@@ -27,9 +27,13 @@ func IniciarConfiguracion(filePath string) *globals.Config {
 		log.Fatal(err.Error())
 	}
 	defer configFile.Close()
-
+	
 	jsonParser := json.NewDecoder(configFile)
 	jsonParser.Decode(&config)
+	
+	if config == nil {
+		log.Fatalf("No se pudo cargar la configuración")
+	}
 
 	return config
 }
@@ -88,4 +92,22 @@ func ConfigurarLogger() {
 	}
 	mw := io.MultiWriter(os.Stdout, logFile)
 	log.SetOutput(mw)
+}
+
+func LeerConsolaHastaVacio() {
+	
+	// Leer de la consola
+	log.Println("Ingrese los mensajes")
+	
+	for {
+		reader := bufio.NewReader(os.Stdin)
+		text, _ := reader.ReadString('\n')
+		
+		if( text == string('\n')){
+			break
+		}
+		
+		log.Print(text)
+	}	
+
 }
